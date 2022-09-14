@@ -18,4 +18,4 @@ COPY . /app
 
 EXPOSE 3000
 
-CMD ["node", "src/main.ts"]
+CMD ["node", "dist/main.js"]
