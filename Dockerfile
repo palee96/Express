@@ -10,7 +10,7 @@ EXPOSE 3000
 
 COPY . .
 
-RUN sudo rm -rf node_modules.
+RUN rm -rf node_modules.
 
 RUN npm install
 
