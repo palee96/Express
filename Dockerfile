@@ -18,5 +18,5 @@ COPY . /usr/src/app
 
 EXPOSE 3000
 
-CMD ["node", "dist/main.js"]
+CMD ["npm", "src/main.ts"]
 
