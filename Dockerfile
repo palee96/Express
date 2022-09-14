@@ -6,7 +6,9 @@ COPY package*.json ./
 
 EXPOSE 3000
 
-RUN npm install
+RUN npm install --force
+
+COPY . .
 
 RUN npm run build
 
