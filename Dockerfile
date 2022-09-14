@@ -16,6 +16,8 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
+RUN chmod +x "dist/index.js"
+
 RUN npm ci --only=production
 
 COPY --from=development /usr/src/app/dist ./dist
