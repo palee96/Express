@@ -14,23 +14,23 @@ function ForCycle(start, stop){
             
         }
         if ((i % 3 || i % 7) ==0){
-            number_array[i-1] = "FizzBuzz"; 
+            number_array[i-start] = "FizzBuzz"; 
              console.log("FizzBuzz\n");
         }
        
          else if (i % 3 == 0)
         {
-            number_array[i-1] = "Fizz";
+            number_array[i-start] = "Fizz";
              console.log("Fizz\n");
         }
         else if (i % 7 ==0)
         {
-            number_array[i-1] = "Buzz";;
+            number_array[i-start] = "Buzz";;
              console.log("Buzz\n");
         }
        
         else{
-            number_array[i-1] = i;
+            number_array[i-start] = i;
              console.log("%d\n",i);
         }
     }
