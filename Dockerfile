@@ -8,7 +8,7 @@ EXPOSE 3000
 
 RUN npm install --force
 
-RUN npm run build
+RUN npm ci build
 
 FROM node:16-alpine as production
 
