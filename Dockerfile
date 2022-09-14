@@ -1,5 +1,7 @@
 FROM node:16-alpine 
 
+MKDIR app
+
 WORKDIR /app
 
 COPY package-lock.json ./
