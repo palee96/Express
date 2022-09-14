@@ -1,8 +1,6 @@
 FROM node:16-alpine 
 
-RUN mkdir /app
-
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package-lock.json ./
 
@@ -14,4 +12,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "dist/main.js"]
+CMD ["node", "src/main.ts"]
