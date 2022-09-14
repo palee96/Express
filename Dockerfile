@@ -10,7 +10,7 @@ RUN npm install -g npm@8.19.2
 
 COPY . .
 
-RUN chmod +x src/main.ts
+RUN chmod u+x /usr/local/bin/build.sh
 
 RUN npm run build
 
