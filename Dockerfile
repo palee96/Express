@@ -10,6 +10,7 @@ COPY . .
 
 RUN npm run build
 
+
 FROM node:16-alpine as production
 
 ARG NODE_ENV=production
@@ -23,4 +24,4 @@ RUN npm install --only=production
 
 COPY --from=development /usr/src/app/dist ./dist
 
-CMD ["node", "main.ts"]
+CMD ["node", "dist/main.js"]
