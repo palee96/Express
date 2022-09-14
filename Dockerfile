@@ -14,7 +14,7 @@ RUN npm install express
 
 RUN npm ci
 
-COPY . /app
+COPY . .
 
 EXPOSE 3000
 
