@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN chmod +x "dist/index.js"
+
 RUN npm run build
 
 FROM node:16-alpine as production
@@ -15,8 +17,6 @@ FROM node:16-alpine as production
 WORKDIR /usr/src/app
 
 COPY package*.json ./
-
-RUN chmod +x "dist/index.js"
 
 RUN npm ci --only=production
 
