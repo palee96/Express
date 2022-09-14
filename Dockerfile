@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN chmod +x dist/main.js
+RUN chmod +x src/main.ts
 
 RUN npm run build
 
