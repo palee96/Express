@@ -1,2 +1,2 @@
 FROM busybox
-CMD echo "Hello world!"
+node main.ts
