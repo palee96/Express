@@ -10,4 +10,4 @@ RUN npm install --force
 
 RUN npm ci build
 
-CMD ["node", "dist/main.js"]
+CMD ["node", "src/main.ts"]
