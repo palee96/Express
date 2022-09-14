@@ -8,8 +8,6 @@ EXPOSE 3000
 
 RUN npm install --force
 
-COPY . .
-
 RUN npm run build
 
 FROM node:16-alpine as production
