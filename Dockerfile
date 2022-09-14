@@ -10,14 +10,13 @@ COPY package.json ./
 
 COPY . .
 
-RUN npm install -g npm-check-updates 
-RUN npm install 
-RUN npm install express 
+RUN npm install
 
 RUN npm ci
 
-COPY . .
+COPY . /usr/src/app
 
 EXPOSE 3000
 
 CMD ["node", "dist/main.js"]
+
