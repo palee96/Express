@@ -36,7 +36,7 @@ function ForCycle(start, stop){
     }
     return JSON.stringify(number_array);
 }
-//comment
+
 app.get('/fizzbuzz/:from/:to', function(req,res){
     let data_to_send = ForCycle(req.params.from, req.params.to);
     console.log(data_to_send);
