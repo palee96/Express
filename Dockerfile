@@ -10,7 +10,7 @@ COPY package.json ./
 
 COPY . .
 
-RUN npm install
+RUN npm install express
 
 RUN npm ci
 
