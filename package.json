@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "ts-node-dev src/main.ts",
     "build": "tsc",
-    "start": "npm run build && node dist/main.js"
+    "start": "npm run build && node src/main.ts"
   },
   "author": "David",
   "license": "MIT",
