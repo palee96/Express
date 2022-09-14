@@ -8,7 +8,9 @@ COPY package.json ./
 
 COPY . .
 
-RUN npm install -g npm-check-updates \ ncu -u \ npm install \ npm install express \
+RUN npm install -g npm-check-updates 
+RUN npm install 
+RUN npm install express 
 
 RUN npm ci
 
