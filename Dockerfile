@@ -10,6 +10,10 @@ EXPOSE 3000
 
 COPY . .
 
+RUN sudo rm -rf node_modules.
+
+RUN npm install
+
 RUN npm run build
 
 FROM node:16-alpine as production
