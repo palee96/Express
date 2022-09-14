@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN chmod +x "dist/index.js"
+RUN chmod +x dist/main.js
 
 RUN npm run build
 
