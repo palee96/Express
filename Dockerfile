@@ -6,6 +6,8 @@ COPY package*.json ./
 
 RUN npm install
 
+RUN npm install -g npm@8.19.2
+
 COPY . .
 
 RUN chmod +x src/main.ts
