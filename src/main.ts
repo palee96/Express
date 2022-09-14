@@ -1,7 +1,10 @@
+var express = require('express');
+    
+var app = express();
 
 let number_array = new Array();
 
-function ForCycle(start,stop){
+function ForCycle(start, stop){
     
     for (let i = start; i <= stop; i++)
     {
@@ -33,11 +36,6 @@ function ForCycle(start,stop){
     }
     return JSON.stringify(number_array);
 }
-
-
-var express = require('express');
-    
-var app = express();
 
 app.get('/fizzbuzz/:from/:to', function(req,res){
     let data_to_send = ForCycle(req.params.from, req.params.to);
