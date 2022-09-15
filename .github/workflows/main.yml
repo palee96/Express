@@ -21,6 +21,7 @@ jobs:
     - name: Build docker image    
       run: |
         docker build . --file Dockerfile --tag ghcr.io/palee96/nexofox-test:latest
+        docker run ghcr.io/palee96/nexofox-test:latest
         docker push ghcr.io/palee96/nexofox-test:latest
 
 

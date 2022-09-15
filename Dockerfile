@@ -1,14 +1,10 @@
-FROM node:16-alpine 
+FROM node:alpine 
 
-WORKDIR /usr/src/app
+COPY . /main
 
-COPY package-lock.json ./
+WORKDIR /main
 
-COPY package.json ./
-
-RUN npm install
-
-COPY . .
+RUN npm install express
 
 EXPOSE 3000
 
