@@ -1,11 +1,16 @@
-FROM node:alpine 
+FROM node:16-alpine 
 
-COPY . /main
+WORKDIR /usr/src/app
 
-WORKDIR /main
+COPY package-lock.json ./
 
-RUN npm install express
+COPY package.json ./
+
+RUN npm install
+
+COPY . .
 
 EXPOSE 9876
 
 CMD ["node", "main.js"]
+
