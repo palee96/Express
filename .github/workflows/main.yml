@@ -1,5 +1,4 @@
-name: Node CI
-
+name: Docker Image CI
 
 on:
   push:
@@ -11,50 +10,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-
-      matrix:
-
-        node-version: [12.x]
-
     steps:
-
-    - uses: actions/checkout@v1
-
-    - name: Use Node.js ${{ matrix.node-version }}
-
-      uses: actions/setup-node@v1
-
-      with:
-
-        node-version: ${{ matrix.node-version }}
-
-    
-    - name: Test the Testcases 
-
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
       run: |
-
-        npm install
-
-        npm run build --if-present
-
-        npm test
-
-    - name: Login to Docker Hub
-
-      run: docker login --username "${{ secrets.DOCKER_HUB_USERNAME }}" --password "${{ secrets.DOCKER_HUB_PASSWORD }}"
-
-    - name: Build the Docker Image 
-
-      run: docker build . --file Dockerfile --tag krishnaprasadkv/nodejs
-
-    - name: Push the Docker Image 
-
-      run: docker push krishnaprasadkv/nodejs
-
-      
-
-      env:
-
-        CI: true
+        echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin docker.io
+        docker build . --file Dockerfile --tag docker.io/${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
+        docker push docker.io/${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
 
