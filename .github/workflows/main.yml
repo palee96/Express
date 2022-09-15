@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build docker image    
       run: |
-        echo "${{ secrets.TOKEN_FOR_GITHUB }}" | docker login ghcr.io -u palee96 --password-stdin
+        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u palee96 --password-stdin
         docker build . --file Dockerfile --tag ghcr.io/palee96/nexofox-test:latest
         docker push ghcr.io/palee96/nexofox-test:latest
 
