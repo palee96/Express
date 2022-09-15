@@ -1,80 +1,60 @@
-# This is a basic workflow to help you get started with Actions
-name: CI-CD
+name: Node CI
 
-# Controls when the action will run. 
+
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-  
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
 jobs:
-  # This workflow contains multiple jobs
+
   build:
-    # The type of runner that the job will run on
+
     runs-on: ubuntu-latest
+
     strategy:
+
       matrix:
-        node-version: [14.x]
-        
-    # Steps represent a sequence of tasks that will be executed as part of the job
+
+        node-version: [12.x]
+
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
 
-      - name: setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test    
+    - uses: actions/checkout@v1
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-        username: ${{secrets.DOCKER_HUB_USERNAME}}
-        password: ${{secrets.DOCKER_HUB_TOKEN}}
+    - name: Use Node.js ${{ matrix.node-version }}
 
-      - name: Set up Docker buildx
-      id: buildx
-      uses: docker/setup-buildx-action@v1
+      uses: actions/setup-node@v1
 
-      - name: Build and push
-      id: docker_build
-      uses: docker/build-push-action@v2  
       with:
-        context: ./
-        file: ./Dockerfile
-        push: true
-        tags: ${{secrets.DOCKER_HUB_USERNAME}}/ametek_test:latest
-      - name: Image digest
-      run: echo ${{steps.docker_build.output.digest}}   
-        - name: Login to DockerHub
-          uses: docker/login-action@v1
-          with:
-            username: ${{ secrets.DOCKER_HUB_USERNAME }}
-            password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+        node-version: ${{ matrix.node-version }}
+
+    
+    - name: Test the Testcases 
+
+      run: |
+
+        npm install
+
+        npm run build --if-present
+
+        npm test
+
+    - name: Login to Docker Hub
+
+      run: docker login --username "${{ secrets.DOCKER_HUB_USERNAME }}" --password "${{ secrets.DOCKER_HUB_PASSWORD }}"
+
+    - name: Build the Docker Image 
+
+      run: docker build . --file Dockerfile --tag krishnaprasadkv/nodejs
+
+    - name: Push the Docker Image 
+
+      run: docker push krishnaprasadkv/nodejs
+
       
-        - name: Build and push
-          uses: docker/build-push-action@v2
-          with:
-            context: ./
-            file: ./Dockerfile
-            push: true
-            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/ametek_test
-          
-        - name: Run the image in a container
-          uses: addnab/docker-run-action@v3
-          with:
-            image: ${{ secrets.DOCKER_HUB_USERNAME }}/ametek_test
-            run: |
-              echo "runing the docker image"
-              echo "Testing the nodejs  app endpoints"
-              echo ${{ steps.docker_build.outputs.digest }}
+
+      env:
+
+        CI: true
 
