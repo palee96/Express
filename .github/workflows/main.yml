@@ -16,7 +16,7 @@ jobs:
         registry: ghcr.io
         username: palee96
         password: ${{ secrets.TOKEN_FOR_GITHUB }}
-        repository: palee96/Express
+        registry: palee96/Express
     - name: Build the Docker image       
       run: |
         docker build . --file Dockerfile --tag ghcr.io/palee96/nexofox-test:latest
