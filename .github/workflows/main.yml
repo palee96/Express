@@ -53,11 +53,8 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{secrets.DOCKER_HUB_USERNAME}}/ametek_test:latest
-
-<<<<<<< HEAD
       - name: Image digest
       run: echo ${{steps.docker_build.output.digest}}   
-=======
         - name: Login to DockerHub
           uses: docker/login-action@v1
           with:
@@ -80,4 +77,4 @@ jobs:
               echo "runing the docker image"
               echo "Testing the nodejs  app endpoints"
               echo ${{ steps.docker_build.outputs.digest }}
->>>>>>> 68b6bd82ff0185e9082f79021e268773d98f4ca3
+
