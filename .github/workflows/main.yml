@@ -19,7 +19,7 @@ jobs:
     - name: Build the Docker image       
       run: |
         echo "${{ secrets.TOKEN_FOR_GITHUB }}" | docker login ghcr.io -u palee96 --password-stdin
-        docker build --file Dockerfile --tag ghcr.io/palee96/nexofox-test:latest
+        docker build . --file Dockerfile --tag ghcr.io/palee96/nexofox-test:latest
         docker push ghcr.io/palee96/nexofox-test:latest
 
 
