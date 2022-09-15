@@ -18,7 +18,7 @@ jobs:
         password: ${{ secrets.TOKEN_FOR_GITHUB }}
     - name: Build the Docker image       
       run: |
-        docker build . --tag ghcr.io/palee96/nexofox-test:latest
-        docker push ghcr.io/palee96/nexofox-test:latest
+        docker build . --tag ghcr.io/palee96/Express:latest
+        docker push ghcr.io/palee96/Express:latest
 
 
