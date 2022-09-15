@@ -5,13 +5,17 @@ on:
     branches: [ master ]
 
 jobs:
+
   build:
+
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-    run: |
-         docker build . --file Dockerfile --tag ghcr.io/palee96/nexofox-test:latest
-         docker run ghcr.io/palee96/nexofox-test:latest
-         docker push ghcr.io/palee96/nexofox-test:latest
+      run: |
+        echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin docker.io
+        docker build . --file Dockerfile --tag docker.io/palee96/ametek_test:$GITHUB_SHA
+        docker push docker.io/palee96/ametek_test:$GITHUB_SHA
+
 
