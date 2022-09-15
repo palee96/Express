@@ -1,11 +1,11 @@
 FROM node:alpine 
 
+RUN npm install express
+
 COPY . /main
 
 WORKDIR /main
 
-RUN npm install express
-
-EXPOSE 3000
+EXPOSE 9876
 
 CMD ["node", "main.js"]
