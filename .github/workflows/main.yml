@@ -9,7 +9,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+- name: Open Directory
+        working-directory: app
+        run: |
+          ls -la
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
