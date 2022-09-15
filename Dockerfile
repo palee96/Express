@@ -1,10 +1,10 @@
 FROM node:alpine 
 
-RUN npm install express
-
 COPY . /main
 
 WORKDIR /main
+
+RUN npm install express
 
 EXPOSE 9876
 
