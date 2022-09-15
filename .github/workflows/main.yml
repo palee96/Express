@@ -1,17 +1,22 @@
-name: publish
+name: Docker Image CI
+
 on:
   push:
     branches: [ master ]
+
 jobs:
-build:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v2
-- name: Build the hello-docker Docker image
-run: |
-       echo "${{ secrets.TOKEN_FOR_GITHUB }}" | ghcr login -u palee96 --password-stdin ghcr.io
-       docker build . --file Dockerfile --tag ghcr.io/palee96/nexofox-test:latest
-       docker run ghcr.io/palee96/nexofox-test:latest
-       docker push ghcr.io/palee96/nexofox-test:latest
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        echo "${{ secrets.TOKEN_FOR_GITHUB }}" | ghcr login -u palee96 --password-stdin ghcr.io
+        docker build . --file Dockerfile --tag ghcr.io/palee96/nexofox-test:latest
+        docker run ghcr.io/palee96/nexofox-test:latest
+        docker push ghcr.io/palee96/nexofox-test:latest
 
 
