@@ -10,15 +10,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: palee96
-        password: ${{ secrets.TOKEN_FOR_GITHUB }}
     - name: Build the Docker image       
       run: |
-        docker build . --file Dockerfile --tag ghcr.io/palee96/nexofox-test:latest
-        docker push ghcr.io/palee96/nexofox-test:latest
+        echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin docker.io
+        docker build . --file Dockerfile --tag docker.io/palee96/ametek_test:$GITHUB_SHA
+        docker push docker.io/palee96/ametek_test:$GITHUB_SHA
 
 

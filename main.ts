@@ -41,6 +41,7 @@ app.get('/fizzbuzz/:from/:to', function(req,res){
     let data_to_send = ForCycle(req.params.from, req.params.to);
     console.log(data_to_send);
     res.send("result: " + data_to_send);
+    number_array.splice(0,number_array.length);
 });
 
 app.listen(9876);
