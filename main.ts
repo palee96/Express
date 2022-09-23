@@ -2,10 +2,10 @@ var express = require('express');
     
 var app = express();
 
-let number_array = new Array();
+let number_array = new Array;
 
 function ForCycle(start, stop){
-    
+    start = parseInt(start);
     for (let i = start; i <= stop; i++)
     {
         if(start <= 0){
@@ -37,6 +37,7 @@ function ForCycle(start, stop){
     return JSON.stringify(number_array);
 }
 
+
 app.get('/fizzbuzz/:from/:to', function(req,res){
     let data_to_send = ForCycle(req.params.from, req.params.to);
     console.log(data_to_send);
@@ -45,3 +46,5 @@ app.get('/fizzbuzz/:from/:to', function(req,res){
 });
 
 app.listen(9876);
+
+

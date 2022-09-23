@@ -22,7 +22,7 @@ function ForCycle(start, stop) {
             console.log("Buzz\n");
         }
         else {
-            number_array[i - start] = i;
+            number_array[start] = i;
             console.log("%d\n", i);
         }
     }
