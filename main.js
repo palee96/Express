@@ -1,8 +1,10 @@
 "use strict";
 var express = require('express');
 var app = express();
-let number_array = new Array();
+let number_array = new Array;
 function ForCycle(start, stop) {
+    start = parseInt(start);
+    stop = parseInt(stop);
     for (let i = start; i <= stop; i++) {
         if (start <= 0) {
             console.log("Invalid number");
@@ -22,7 +24,7 @@ function ForCycle(start, stop) {
             console.log("Buzz\n");
         }
         else {
-            number_array[start] = i;
+            number_array[i - start] = i;
             console.log("%d\n", i);
         }
     }
@@ -32,5 +34,6 @@ app.get('/fizzbuzz/:from/:to', function (req, res) {
     let data_to_send = ForCycle(req.params.from, req.params.to);
     console.log(data_to_send);
     res.send("result: " + data_to_send);
+    number_array.splice(0, number_array.length);
 });
 app.listen(9876);

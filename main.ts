@@ -6,6 +6,8 @@ let number_array = new Array;
 
 function ForCycle(start, stop){
     start = parseInt(start);
+    stop = parseInt(stop);
+    
     for (let i = start; i <= stop; i++)
     {
         if(start <= 0){
